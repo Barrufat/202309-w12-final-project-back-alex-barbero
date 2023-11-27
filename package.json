@@ -1,7 +1,7 @@
 {
   "name": "express-ts-jest-template",
   "version": "1.0.0",
-  "description": "",
+  "description": "Api Rest of records",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
