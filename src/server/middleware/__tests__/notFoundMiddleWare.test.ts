@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import type CustomError from "../../CustomError/CustomError";
+import CustomError from "../../CustomError/CustomError";
 import { notFoundError } from "../errorMiddleware";
 
 describe("Given a notFound error MiddleWare", () => {
@@ -7,16 +7,18 @@ describe("Given a notFound error MiddleWare", () => {
     test("Then it should call the next function with the Custom Error", () => {
       const req = {};
       const res = {};
-      const next = jest.fn();
+      const next: NextFunction = jest.fn();
 
-      const customError: Partial<CustomError> = {
-        message: "Endpoint not found",
-        statusCode: 404,
-      };
+      const customError = new CustomError(
+        "Endpoint not found",
+        404,
+        "errorMiddlewWare:notFound",
+        "testPrivateMessage",
+      );
 
-      notFoundError(req as Request, res as Response, next as NextFunction);
+      notFoundError(req as Request, res as Response, next);
 
-      expect(next).toHaveBeenCalledWith(expect.objectContaining(customError));
+      expect(next).toHaveBeenCalledWith(customError);
     });
   });
 });
