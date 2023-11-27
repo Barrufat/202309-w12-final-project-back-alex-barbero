@@ -1,8 +1,9 @@
 import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
-import app from "./app.js";
 import cors from "cors";
+import app from "./app.js";
+import generalError, { notFoundError } from "./middleware/errorMiddleware.js";
 
 app.use(morgan("dev"));
 
@@ -16,3 +17,7 @@ app.use(
     ],
   }),
 );
+
+app.use(notFoundError);
+
+app.use(generalError);
