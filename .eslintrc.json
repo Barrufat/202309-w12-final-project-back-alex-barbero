@@ -9,7 +9,12 @@
       "extends": ["xo-typescript", "prettier"],
       "files": ["src/", "*.ts", "*.tsx"],
       "rules": {
-        "@typescript-eslint/consistent-type-definitions": ["error", "interface"]
+        "no-unused-vars": "error",
+        "@typescript-eslint/consistent-type-definitions": [
+          "error",
+          "interface"
+        ],
+        "no-implicit-coercion": "off"
       }
     },
     {
@@ -29,7 +34,6 @@
       {
         "capIsNewExceptions": ["Router"]
       }
-    ],
-    "no-implicit-coercion": "off"
+    ]
   }
 }
