@@ -7,7 +7,7 @@ describe("Given a notFound error MiddleWare", () => {
     test("Then it should call the next function with the Custom Error", () => {
       const req = {};
       const res = {};
-      const next: NextFunction = jest.fn();
+      const next = jest.fn();
 
       const customError = new CustomError(
         "Endpoint not found",
@@ -16,7 +16,7 @@ describe("Given a notFound error MiddleWare", () => {
         "testPrivateMessage",
       );
 
-      notFoundError(req as Request, res as Response, next);
+      notFoundError(req as Request, res as Response, next as NextFunction);
 
       expect(next).toHaveBeenCalledWith(customError);
     });
