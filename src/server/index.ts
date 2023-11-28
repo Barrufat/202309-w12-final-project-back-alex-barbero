@@ -5,6 +5,7 @@ import cors from "cors";
 import app from "./app.js";
 import generalError, { notFoundError } from "./middleware/errorMiddleware.js";
 import pingRouter from "../features/ping/router/PingRouter.js";
+import recordRouter from "../features/records/router/RecordsRouter/recordRouter.js";
 
 app.use(morgan("dev"));
 
@@ -20,6 +21,8 @@ app.use(
 );
 
 app.use("/", pingRouter);
+
+app.use("/records", recordRouter);
 
 app.use(notFoundError);
 

@@ -1,4 +1,4 @@
-import { Record } from "../model/Record";
+import { Record } from "../model/Record.js";
 import { type RecordStructure } from "../types";
 import { type RecordsRepository } from "./types";
 
