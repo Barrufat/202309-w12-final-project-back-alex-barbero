@@ -7,16 +7,15 @@ import generalError, { notFoundError } from "./middleware/errorMiddleware.js";
 import pingRouter from "../features/ping/router/PingRouter.js";
 import recordRouter from "../features/records/router/RecordsRouter/recordRouter.js";
 
+const frontProdUrl = process.env.ALLOWED_PROD_ORIGIN;
+
 app.use(morgan("dev"));
 
 app.use(express.json());
 
 app.use(
   cors({
-    origin: [
-      "https://alex-barbero-202309-bcn-front.netlify.app/",
-      "http://localhost:4000",
-    ],
+    origin: [frontProdUrl!, "http://localhost:5173/"],
   }),
 );
 

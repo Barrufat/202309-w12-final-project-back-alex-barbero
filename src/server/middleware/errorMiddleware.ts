@@ -23,10 +23,8 @@ const generalError = (
   res: Response,
   _next: NextFunction,
 ) => {
-  if (error.privateMessage) {
-    const debug = debugCreator(`${error.nameSpace ?? "root:errorMiddleWare"}`);
-    debug(chalk.red(`error: ${error.privateMessage}`));
-  }
+  const debug = debugCreator(`${error.nameSpace ?? "root:errorMiddleWare"}`);
+  debug(chalk.red(`error: ${error.privateMessage ?? error.message}`));
 
   const statusCode = error.statusCode ?? 500;
   res.status(statusCode).json({ message: error.message });
