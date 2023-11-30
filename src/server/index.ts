@@ -7,7 +7,7 @@ import generalError, { notFoundError } from "./middleware/errorMiddleware.js";
 import pingRouter from "../features/ping/router/PingRouter.js";
 import recordRouter from "../features/records/router/RecordsRouter/recordRouter.js";
 
-const frontProdUrl = process.env.ALLOWED_PROD_ORIGIN;
+const frontProdUrl = process.env.ALLOWED_PROD_ORIGIN!;
 
 app.use(morgan("dev"));
 
@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: [frontProdUrl!, "http://localhost:5173/"],
+    origin: [frontProdUrl, "http://localhost:5173"],
   }),
 );
 
