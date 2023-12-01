@@ -6,9 +6,11 @@ module.exports = {
   testMatch: ["**/src/**/*.test.ts"],
   resolver: "jest-ts-webcompat-resolver",
   coveragePathIgnorePatterns: [
-    "src/setupTest.ts",
-    "src/index.ts",
-    "src/database/index.ts",
-    "src/server/app.ts",
+    "src/**/*.ts",
+    "!**/node_modules/**",
+    "!**/src/index.ts",
+    "!**src/setupTest.ts",
+    "!**src/database/index.ts",
+    "!**src/server/app.ts",
   ],
 };
