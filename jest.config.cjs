@@ -5,10 +5,12 @@ module.exports = {
   testEnvironment: "node",
   testMatch: ["**/src/**/*.test.ts"],
   resolver: "jest-ts-webcompat-resolver",
-  coveragePathIgnorePatterns: [
-    "src/setupTest.ts",
-    "src/index.ts",
-    "src/database/index.ts",
-    "src/server/app.ts",
+  collectCoverageFrom: [
+    "**/*.ts",
+    "!src/index.ts",
+    "!src/server/app.ts",
+    "!src/database/index.ts",
+    "!src/setupTest.ts",
+    "!**/node_modules/**",
   ],
 };
