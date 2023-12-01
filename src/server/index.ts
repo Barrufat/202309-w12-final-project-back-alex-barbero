@@ -9,7 +9,7 @@ import recordRouter from "../features/records/router/RecordsRouter/recordRouter.
 
 const frontProdUrl = process.env.ALLOWED_PROD_ORIGIN!;
 const corsAllowedUrls = {
-  origin: [frontProdUrl, "http://localhost:5173", "http://localhost:3000"],
+  origin: frontProdUrl,
 };
 
 app.use(morgan("dev"));
