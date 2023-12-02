@@ -4,9 +4,19 @@ import { type RecordsRepository } from "./types";
 
 class RecordsMongooseRepository implements RecordsRepository {
   async getRecords(): Promise<RecordStructure[]> {
-    const records = await Record.find().limit(10);
+    const records = await Record.find();
 
     return records;
+  }
+
+  async deleteRecord(recordId: string): Promise<RecordStructure> {
+    const deletedRecord = await Record.findByIdAndDelete(recordId);
+
+    if (!deletedRecord) {
+      throw new Error("Record not found!");
+    }
+
+    return deletedRecord;
   }
 }
 
