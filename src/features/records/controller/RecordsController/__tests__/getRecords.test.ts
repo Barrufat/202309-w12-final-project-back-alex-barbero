@@ -15,11 +15,13 @@ describe("Given a RecordsController's getRecords function", () => {
       json: jest.fn().mockReturnThis(),
     };
 
-    const recordsRepository: RecordsMongooseRepository = {
+    const recordsRepository: Pick<RecordsMongooseRepository, "getRecords"> = {
       getRecords: jest.fn().mockReturnValue(recordsMock),
     };
 
-    const recordsController = new RecordsController(recordsRepository);
+    const recordsController = new RecordsController(
+      recordsRepository as RecordsMongooseRepository,
+    );
 
     test("Then it should call the response status method with a 200", async () => {
       const expectedStatusCode = 200;
