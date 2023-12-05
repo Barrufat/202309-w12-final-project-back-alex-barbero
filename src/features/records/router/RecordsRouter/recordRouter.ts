@@ -8,5 +8,6 @@ const recordsRepository = new RecordsMongooseRepository();
 const recordsController = new RecordsController(recordsRepository);
 
 recordRouter.get("/", recordsController.getRecords);
+recordRouter.delete("/:recordId", recordsController.deleteRecordById);
 
 export default recordRouter;
