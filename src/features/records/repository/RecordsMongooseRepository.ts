@@ -12,11 +12,9 @@ class RecordsMongooseRepository implements RecordsRepository {
   async deleteRecord(recordId: string): Promise<RecordStructure> {
     const deletedRecord = await Record.findByIdAndDelete(recordId);
 
-    if (!deletedRecord) {
-      throw new Error("Record not found!");
-    }
+    await Record.findByIdAndDelete(recordId);
 
-    return deletedRecord;
+    return deletedRecord!;
   }
 }
 

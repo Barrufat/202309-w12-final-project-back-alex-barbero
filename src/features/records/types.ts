@@ -22,3 +22,5 @@ export type ByRecordId = Request<{
 export interface DeleteRecordRequest {
   params: () => string;
 }
+
+export type DeleteRecordRequestParams = Request<{ recordId: string }>;
