@@ -1,5 +1,5 @@
-import { Record } from "../model/Record.js";
-import { type RecordStructure } from "../types";
+import Record from "../model/Record.js";
+import { type RecordStructureWithId, type RecordStructure } from "../types";
 import { type RecordsRepository } from "./types";
 
 class RecordsMongooseRepository implements RecordsRepository {
@@ -15,6 +15,13 @@ class RecordsMongooseRepository implements RecordsRepository {
     await Record.findByIdAndDelete(recordId);
 
     return deletedRecord!;
+  }
+
+  public async createRecord(
+    record: RecordStructure,
+  ): Promise<RecordStructureWithId> {
+    const createdRecord = await Record.create(record);
+    return createdRecord;
   }
 }
 

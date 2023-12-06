@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { type RecordStructure } from "../types";
+import { type RecordStructureWithId } from "../types";
 
-const recordSchema = new Schema<RecordStructure>({
+const recordSchema = new Schema<RecordStructureWithId>({
   bandName: {
     type: String,
     required: true,
@@ -32,4 +32,6 @@ const recordSchema = new Schema<RecordStructure>({
   },
 });
 
-export const Record = model("Record", recordSchema, "records");
+const Record = model("Record", recordSchema, "records");
+
+export default Record;

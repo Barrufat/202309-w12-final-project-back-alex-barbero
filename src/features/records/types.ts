@@ -1,4 +1,5 @@
 import { type Request } from "express";
+import { type Types } from "mongoose";
 
 export interface RecordStructure {
   bandName: string;
@@ -12,7 +13,11 @@ export interface RecordStructure {
 }
 
 export interface RecordStructureWithId extends RecordStructure {
-  _id: string;
+  id: string;
+}
+
+export interface RecordStructureWithIdMongoose extends RecordStructure {
+  _id: Types.ObjectId;
 }
 
 export type ByRecordId = Request<{
@@ -24,3 +29,9 @@ export interface DeleteRecordRequest {
 }
 
 export type DeleteRecordRequestParams = Request<{ recordId: string }>;
+
+export type CreateRecordRequest = Request<
+  Record<string, unknown>,
+  Record<string, unknown>,
+  RecordStructure
+>;
