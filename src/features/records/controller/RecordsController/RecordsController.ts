@@ -1,6 +1,7 @@
 import type { Response, Request, NextFunction } from "express";
-import type RecordsMongooseRepository from "../../repository/RecordsMongooseRepository";
-import CustomError from "../../../../server/CustomError/CustomError";
+import type RecordsMongooseRepository from "../../repository/RecordsMongooseRepository.js";
+import CustomError from "../../../../server/CustomError/CustomError.js";
+import { type CreateRecordRequest } from "../../types";
 
 class RecordsController {
   constructor(private readonly recordsRepository: RecordsMongooseRepository) {}
@@ -32,7 +33,29 @@ class RecordsController {
         "Impossible deleting the record",
         400,
         (error as Error).message,
-        "records:recordsController:deleteRecord",
+        "root:records:recordsController:deleteRecord",
+      );
+
+      next(customError);
+    }
+  };
+
+  public createRecord = async (
+    req: CreateRecordRequest,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    const recordData = req.body;
+
+    try {
+      const newRecord = await this.recordsRepository.createRecord(recordData);
+      res.status(201).json({ record: newRecord });
+    } catch (error) {
+      const customError = new CustomError(
+        "Impossible creating a new Record",
+        500,
+        (error as Error).message,
+        "root:records:recordsController:createRecord",
       );
 
       next(customError);

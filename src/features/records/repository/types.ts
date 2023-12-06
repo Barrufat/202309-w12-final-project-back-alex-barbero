@@ -1,6 +1,7 @@
-import { type RecordStructure } from "../types";
+import { type RecordStructureWithId, type RecordStructure } from "../types";
 
 export interface RecordsRepository {
-  getRecords(): Promise<RecordStructure[]>;
-  deleteRecord(recordId: string): Promise<RecordStructure>;
+  getRecords: () => Promise<RecordStructure[]>;
+  deleteRecord: (recordId: string) => Promise<RecordStructure>;
+  createRecord: (record: RecordStructure) => Promise<RecordStructureWithId>;
 }

@@ -1,7 +1,9 @@
-import { type RecordStructure } from "../types";
+import { Types } from "mongoose";
+import type { RecordStructure, RecordStructureWithIdMongoose } from "../types";
 
-export const recordsMock: RecordStructure[] = [
+export const recordsMock: RecordStructureWithIdMongoose[] = [
   {
+    _id: new Types.ObjectId("65627f915a1ecd043c5d123a"),
     bandName: "Ejtopa",
     albumName: "Fui alaorilla del rio y mi ketabah mu chola",
     frontCover: "front.png",
@@ -12,6 +14,7 @@ export const recordsMock: RecordStructure[] = [
     trackList: "Uan, chu, zri",
   },
   {
+    _id: new Types.ObjectId("65627f915a1ecd043c5d456a"),
     bandName: "Los chunguitos",
     albumName: "Dame veneno",
     frontCover: "front.png",
@@ -22,3 +25,14 @@ export const recordsMock: RecordStructure[] = [
     trackList: "Uan, chu, zri",
   },
 ];
+
+export const newRecordMock: RecordStructure = {
+  bandName: "Kamela",
+  albumName: "Sueñocontigowww",
+  frontCover: "kemadadooun",
+  backCover: "sinoteuviera",
+  printImage: "conosidoo",
+  cookieImage: "noo",
+  description: "mubieraa",
+  trackList: "namoradouuuuung",
+};
