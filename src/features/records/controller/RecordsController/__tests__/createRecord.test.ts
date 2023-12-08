@@ -17,13 +17,13 @@ describe("Given a RecordsControllers's method createRecord", () => {
   const next: NextFunction = jest.fn();
 
   describe("When it receives a response", () => {
-    const recordsRepository: RecordsRepository = {
-      getRecords: jest.fn(),
+    const recordsRepository: Pick<RecordsRepository, "createRecord"> = {
       createRecord: jest.fn().mockResolvedValue(newRecordMock),
-      deleteRecord: jest.fn(),
     };
 
-    const recordsController = new RecordsController(recordsRepository);
+    const recordsController = new RecordsController(
+      recordsRepository as RecordsRepository,
+    );
 
     test("Then it should call the method status with a 201", async () => {
       const expectedStatusCode = 201;
