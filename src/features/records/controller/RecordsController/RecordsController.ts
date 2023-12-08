@@ -1,10 +1,10 @@
 import type { Response, Request, NextFunction } from "express";
-import type RecordsMongooseRepository from "../../repository/RecordsMongooseRepository.js";
 import CustomError from "../../../../server/CustomError/CustomError.js";
 import { type CreateRecordRequest } from "../../types";
+import { type RecordsRepository } from "../../repository/types.js";
 
 class RecordsController {
-  constructor(private readonly recordsRepository: RecordsMongooseRepository) {}
+  constructor(private readonly recordsRepository: RecordsRepository) {}
 
   getRecords = async (
     _req: Request,
@@ -56,6 +56,30 @@ class RecordsController {
         500,
         (error as Error).message,
         "root:records:recordsController:createRecord",
+      );
+
+      next(customError);
+    }
+  };
+
+  public getRecordById = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    const { recordId } = req.params;
+
+    try {
+      const currentRecord =
+        await this.recordsRepository.getRecordById(recordId);
+
+      res.status(200).json({ record: currentRecord });
+    } catch (error) {
+      const customError = new CustomError(
+        "Impossible finding that Record",
+        500,
+        (error as Error).message,
+        "root:records:recordsController:getRecordById",
       );
 
       next(customError);

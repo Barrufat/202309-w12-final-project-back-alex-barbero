@@ -1,19 +1,19 @@
-import type { NextFunction, Response, Request } from "express";
+import { type NextFunction, type Request, type Response } from "express";
+import type CustomError from "../../../../../server/CustomError/CustomError";
 import { recordsMock } from "../../../mocks/recordsMock";
 import type RecordsMongooseRepository from "../../../repository/RecordsMongooseRepository";
-import type {
-  RecordStructure,
-  ByIdRecordRequest,
-  ByRecordIdRequest,
+import {
+  type ByIdRecordRequest,
+  type ByRecordIdRequest,
+  type RecordStructure,
 } from "../../../types";
 import RecordsController from "../RecordsController";
-import type CustomError from "../../../../../server/CustomError/CustomError";
 
 beforeEach(() => {
   jest.clearAllMocks();
 });
 
-describe("Given a recordsControllers's method deleteRecord", () => {
+describe("Given a recordsControllers's method getRecordById", () => {
   describe("When it receives a response and the Estopa Record Id in a request", () => {
     const req: ByIdRecordRequest = {
       params: jest.fn().mockReturnValue("1"),
@@ -22,16 +22,16 @@ describe("Given a recordsControllers's method deleteRecord", () => {
     const res: Pick<Response, "status" | "json"> = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn().mockReturnValue({
-        message:
-          "Ejtopa Fui alaorilla del rio y mi ketabah mu chola successfully deleted",
+        record: {},
       }),
     };
 
     const next: NextFunction = jest.fn();
 
-    const recordsRepository: Pick<RecordsMongooseRepository, "deleteRecord"> = {
-      deleteRecord: jest.fn().mockReturnValue(recordsMock[0]),
-    };
+    const recordsRepository: Pick<RecordsMongooseRepository, "getRecordById"> =
+      {
+        getRecordById: jest.fn().mockReturnValue(recordsMock[0]),
+      };
 
     const recordsController = new RecordsController(
       recordsRepository as RecordsMongooseRepository,
@@ -40,7 +40,7 @@ describe("Given a recordsControllers's method deleteRecord", () => {
     test("Then it should call the method status with a 200", async () => {
       const expectedStatusCode = 200;
 
-      await recordsController.deleteRecordById(
+      await recordsController.getRecordById(
         req as unknown as ByRecordIdRequest,
         res as Response,
         next,
@@ -52,22 +52,22 @@ describe("Given a recordsControllers's method deleteRecord", () => {
     test("Then it should call its method json with the message Estopa successfully deleted", async () => {
       const expectedRecord: RecordStructure = recordsMock[0];
 
-      await recordsController.deleteRecordById(
+      await recordsController.getRecordById(
         req as unknown as ByRecordIdRequest,
         res as Response,
         next,
       );
 
       expect(res.json).toHaveBeenCalledWith({
-        message: `${expectedRecord.bandName} ${expectedRecord.albumName} successfully deleted`,
+        record: expectedRecord,
       });
     });
   });
 
   describe("When it receives a response and an unvalid Id a request", () => {
     const expectedError: Pick<CustomError, "message" | "statusCode"> = {
-      message: "Impossible deleting the record",
-      statusCode: 400,
+      message: "Impossible finding that Record",
+      statusCode: 500,
     };
 
     const reqError: Pick<Request, "params"> = {
@@ -79,7 +79,7 @@ describe("Given a recordsControllers's method deleteRecord", () => {
     };
     const next: NextFunction = jest.fn();
 
-    test("Then it should call the next with a 400 and 'Impossible deleting the record'", async () => {
+    test("Then it should call the next with a 500 and 'Impossible finding that Record'", async () => {
       const recordsRepository: Pick<RecordsMongooseRepository, "deleteRecord"> =
         {
           deleteRecord: jest.fn().mockRejectedValue("error"),
@@ -89,7 +89,7 @@ describe("Given a recordsControllers's method deleteRecord", () => {
         recordsRepository as RecordsMongooseRepository,
       );
 
-      await recordsController.deleteRecordById(
+      await recordsController.getRecordById(
         reqError as Request,
         resError as Response,
         next,

@@ -20,11 +20,11 @@ export interface RecordStructureWithIdMongoose extends RecordStructure {
   _id: Types.ObjectId;
 }
 
-export type ByRecordId = Request<{
+export type ByRecordIdRequest = Request<{
   recordId: string;
 }>;
 
-export interface DeleteRecordRequest {
+export interface ByIdRecordRequest {
   params: () => string;
 }
 

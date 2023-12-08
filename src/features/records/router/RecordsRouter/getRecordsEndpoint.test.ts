@@ -16,10 +16,12 @@ describe("Given a GET /records endpoint", () => {
 
       const responseBody = response.body as { records: RecordStructure[] };
 
+      const invertedRecordsMock = recordsMock.reverse();
+
       responseBody.records.forEach((record, recordPosition) => {
         expect(record).toHaveProperty(
           "bandName",
-          recordsMock[recordPosition].bandName,
+          invertedRecordsMock[recordPosition].bandName,
         );
       });
     });

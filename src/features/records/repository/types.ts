@@ -4,4 +4,5 @@ export interface RecordsRepository {
   getRecords: () => Promise<RecordStructure[]>;
   deleteRecord: (recordId: string) => Promise<RecordStructure>;
   createRecord: (record: RecordStructure) => Promise<RecordStructureWithId>;
+  getRecordById: (recordId: string) => Promise<RecordStructure>;
 }
