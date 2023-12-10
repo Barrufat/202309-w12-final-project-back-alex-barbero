@@ -11,5 +11,6 @@ recordRouter.get("/", recordsController.getRecords);
 recordRouter.delete("/:recordId", recordsController.deleteRecordById);
 recordRouter.post("/", recordsController.createRecord);
 recordRouter.get("/:recordId", recordsController.getRecordById);
+recordRouter.patch("/:recordId", recordsController.modifyRecord);
 
 export default recordRouter;

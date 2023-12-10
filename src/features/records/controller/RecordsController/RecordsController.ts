@@ -1,6 +1,9 @@
 import type { Response, Request, NextFunction } from "express";
 import CustomError from "../../../../server/CustomError/CustomError.js";
-import { type CreateRecordRequest } from "../../types";
+import {
+  type ModifyRecordRequest,
+  type CreateRecordRequest,
+} from "../../types";
 import { type RecordsRepository } from "../../repository/types.js";
 
 class RecordsController {
@@ -56,6 +59,32 @@ class RecordsController {
         500,
         (error as Error).message,
         "root:records:recordsController:createRecord",
+      );
+
+      next(customError);
+    }
+  };
+
+  public modifyRecord = async (
+    req: ModifyRecordRequest,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    const recordData = req.body;
+    const { recordId } = req.params;
+
+    try {
+      const modifiedRecord = await this.recordsRepository.modifyRecord(
+        recordId,
+        recordData,
+      );
+      res.status(201).json({ record: modifiedRecord });
+    } catch (error) {
+      const customError = new CustomError(
+        "Impossible creating a new Record",
+        500,
+        (error as Error).message,
+        "root:records:recordsController:modifyRecord",
       );
 
       next(customError);
