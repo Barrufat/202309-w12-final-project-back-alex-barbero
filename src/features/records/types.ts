@@ -35,3 +35,9 @@ export type CreateRecordRequest = Request<
   Record<string, unknown>,
   RecordStructure
 >;
+
+export type ModifyRecordRequest = Request<
+  { recordId: string },
+  Record<string, unknown>,
+  RecordStructure
+>;
