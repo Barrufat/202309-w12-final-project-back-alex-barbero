@@ -4,7 +4,7 @@ import { type RecordsRepository } from "./types";
 
 class RecordsMongooseRepository implements RecordsRepository {
   async getRecords(): Promise<RecordStructure[]> {
-    const records = await Record.find().sort({ _id: -1 }).limit(10);
+    const records = await Record.find().limit(10).sort({ _id: -1 });
 
     return records;
   }
@@ -17,6 +17,21 @@ class RecordsMongooseRepository implements RecordsRepository {
   async createRecord(record: RecordStructure): Promise<RecordStructureWithId> {
     const createdRecord = await Record.create(record);
     return createdRecord;
+  }
+
+  async modifyRecord(
+    recordId: string,
+    record: RecordStructure,
+  ): Promise<RecordStructureWithId> {
+    const modifiedRecord = await Record.findOneAndUpdate(
+      { _id: recordId },
+      record,
+      {
+        new: true,
+      },
+    );
+
+    return modifiedRecord!;
   }
 
   async getRecordById(recordId: string): Promise<RecordStructure> {

@@ -49,7 +49,7 @@ describe("Given a recordsControllers's method getRecordById", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call its method json with the message Estopa successfully deleted", async () => {
+    test("Then it should call its method json with that record", async () => {
       const expectedRecord: RecordStructure = recordsMock[0];
 
       await recordsController.getRecordById(
