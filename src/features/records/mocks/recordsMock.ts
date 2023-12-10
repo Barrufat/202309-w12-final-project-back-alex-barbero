@@ -36,3 +36,14 @@ export const newRecordMock: RecordStructure = {
   description: "mubieraa",
   trackList: "namoradouuuuung",
 };
+
+export const modifiedRecordMock: RecordStructure = {
+  bandName: "Ejtopa modificado",
+  albumName: "modificado",
+  frontCover: "front.png",
+  backCover: "back.png",
+  printImage: "print.png",
+  cookieImage: "cookie.png",
+  description: "Lo etopa son lo ma grande",
+  trackList: "modificado",
+};

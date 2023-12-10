@@ -26,6 +26,10 @@ const recordSchema = new Schema<RecordStructureWithId>({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   trackList: {
     type: String,
     required: true,
