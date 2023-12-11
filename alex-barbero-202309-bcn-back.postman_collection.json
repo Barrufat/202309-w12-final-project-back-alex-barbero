@@ -1,0 +1,121 @@
+{
+  "info": {
+    "_postman_id": "ec6683ca-eba0-4aaa-a0e1-84726f0eb8e3",
+    "name": "alex-barbero-202309-bcn-back",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20079023"
+  },
+  "item": [
+    {
+      "name": "http://localhost:4000/",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": [""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/records/:id",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/records/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["records", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/records",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"bandName\": \"Kamela\",\r\n  \"albumName\": \"Sueñocontigowww\",\r\n  \"frontCover\": \"kemadadooun\",\r\n  \"backCover\": \"sinoteuviera\",\r\n  \"printImage\": \"conosidoo\",\r\n  \"cookieImage\": \"noo\",\r\n  \"description\": \"mubieraa\",\r\n  \"trackList\": \"namoradouuuuung\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/records",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["records"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/records/:id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/records/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["records", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/records/:id",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"albumName\"\r\n: \r\n\"Cambiado tambien!\",\r\n\"backCover\"\r\n: \r\n\"Tesitooo\",\r\n\"bandName\"\r\n: \r\n\"CambiadooO!\",\r\n\"cookieImage\"\r\n: \r\n\"Tesitooo\",\r\n\"description\"\r\n: \r\n\"dfz\",\r\n\"frontCover\"\r\n: \r\n\"Tesitooo\",\r\n\"printImage\"\r\n: \r\n\"Tesitooo\",\r\n\"trackList\"\r\n: \r\n\"Tesitooo\",\r\n\"__v\"\r\n: \r\n0\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/records/:id",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["records", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
