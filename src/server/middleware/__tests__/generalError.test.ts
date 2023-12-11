@@ -46,15 +46,3 @@ describe("Given a generalError middleWare", () => {
     });
   });
 });
-
-interface Debugger {
-  (formatter: any, ...args: any[]): void;
-
-  color: string;
-  diff: number;
-  enabled: boolean;
-  log: (...args: any[]) => any;
-  namespace: string;
-  destroy: () => boolean;
-  extend: (namespace: string, delimiter?: string) => Debugger;
-}
