@@ -24,10 +24,6 @@ export type ByRecordIdRequest = Request<{
   recordId: string;
 }>;
 
-export interface ByIdRecordRequest {
-  params: () => string;
-}
-
 export type DeleteRecordRequestParams = Request<{ recordId: string }>;
 
 export type CreateRecordRequest = Request<

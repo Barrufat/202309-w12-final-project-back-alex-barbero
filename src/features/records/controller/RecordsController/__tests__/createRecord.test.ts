@@ -16,7 +16,7 @@ describe("Given a RecordsControllers's method createRecord", () => {
 
   const next: NextFunction = jest.fn();
 
-  describe("When it receives a response", () => {
+  describe("When it receives a request with a a new record data and a response", () => {
     const recordsRepository: Pick<RecordsRepository, "createRecord"> = {
       createRecord: jest.fn().mockResolvedValue(newRecordMock),
     };
@@ -25,7 +25,7 @@ describe("Given a RecordsControllers's method createRecord", () => {
       recordsRepository as RecordsRepository,
     );
 
-    test("Then it should call the method status with a 201", async () => {
+    test("Then it should call the response method status with a 201", async () => {
       const expectedStatusCode = 201;
 
       await recordsController.createRecord(
@@ -37,7 +37,7 @@ describe("Given a RecordsControllers's method createRecord", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call its method json with the new Record", async () => {
+    test("Then it should call the response method json with the new Record", async () => {
       const expectedRecord = newRecordMock;
 
       await recordsController.createRecord(

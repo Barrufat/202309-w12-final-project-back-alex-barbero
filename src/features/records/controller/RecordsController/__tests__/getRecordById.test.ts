@@ -2,11 +2,7 @@ import { type NextFunction, type Request, type Response } from "express";
 import type CustomError from "../../../../../server/CustomError/CustomError";
 import { recordsMock } from "../../../mocks/recordsMock";
 import type RecordsMongooseRepository from "../../../repository/RecordsMongooseRepository";
-import {
-  type ByIdRecordRequest,
-  type ByRecordIdRequest,
-  type RecordStructure,
-} from "../../../types";
+import { type ByRecordIdRequest, type RecordStructure } from "../../../types";
 import RecordsController from "../RecordsController";
 
 beforeEach(() => {
@@ -15,8 +11,8 @@ beforeEach(() => {
 
 describe("Given a recordsControllers's method getRecordById", () => {
   describe("When it receives a response and the Estopa Record Id in a request", () => {
-    const req: ByIdRecordRequest = {
-      params: jest.fn().mockReturnValue("1"),
+    const req: Partial<ByRecordIdRequest> = {
+      params: { recordId: "1" },
     };
 
     const res: Pick<Response, "status" | "json"> = {
@@ -41,7 +37,7 @@ describe("Given a recordsControllers's method getRecordById", () => {
       const expectedStatusCode = 200;
 
       await recordsController.getRecordById(
-        req as unknown as ByRecordIdRequest,
+        req as ByRecordIdRequest,
         res as Response,
         next,
       );
@@ -53,7 +49,7 @@ describe("Given a recordsControllers's method getRecordById", () => {
       const expectedRecord: RecordStructure = recordsMock[0];
 
       await recordsController.getRecordById(
-        req as unknown as ByRecordIdRequest,
+        req as ByRecordIdRequest,
         res as Response,
         next,
       );
@@ -70,7 +66,7 @@ describe("Given a recordsControllers's method getRecordById", () => {
       statusCode: 500,
     };
 
-    const reqError: Pick<Request, "params"> = {
+    const reqError: Partial<ByRecordIdRequest> = {
       params: { recordId: "1234" },
     };
     const resError: Pick<Response, "status" | "json"> = {

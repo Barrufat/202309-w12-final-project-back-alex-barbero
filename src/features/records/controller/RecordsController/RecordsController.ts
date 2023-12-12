@@ -52,6 +52,7 @@ class RecordsController {
 
     try {
       const newRecord = await this.recordsRepository.createRecord(recordData);
+
       res.status(201).json({ record: newRecord });
     } catch (error) {
       const customError = new CustomError(
