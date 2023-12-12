@@ -1,11 +1,7 @@
 import type { NextFunction, Response, Request } from "express";
 import { recordsMock } from "../../../mocks/recordsMock";
 import type RecordsMongooseRepository from "../../../repository/RecordsMongooseRepository";
-import type {
-  RecordStructure,
-  ByIdRecordRequest,
-  ByRecordIdRequest,
-} from "../../../types";
+import type { RecordStructure, ByRecordIdRequest } from "../../../types";
 import RecordsController from "../RecordsController";
 import type CustomError from "../../../../../server/CustomError/CustomError";
 
@@ -15,8 +11,8 @@ beforeEach(() => {
 
 describe("Given a recordsControllers's method deleteRecord", () => {
   describe("When it receives a response and the Estopa Record Id in a request", () => {
-    const req: ByIdRecordRequest = {
-      params: jest.fn().mockReturnValue("1"),
+    const req: Partial<ByRecordIdRequest> = {
+      params: { recordId: "1" },
     };
 
     const res: Pick<Response, "status" | "json"> = {
@@ -53,7 +49,7 @@ describe("Given a recordsControllers's method deleteRecord", () => {
       const expectedRecord: RecordStructure = recordsMock[0];
 
       await recordsController.deleteRecordById(
-        req as unknown as ByRecordIdRequest,
+        req as ByRecordIdRequest,
         res as Response,
         next,
       );

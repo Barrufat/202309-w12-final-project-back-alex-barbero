@@ -16,7 +16,7 @@ describe("Given a POST /records endpoint", () => {
 
       const responseStatusCode = response.statusCode;
 
-      expect(responseStatusCode).toBe(201);
+      expect(responseStatusCode).toBe(expectedStatusCode);
     });
   });
 
@@ -32,7 +32,7 @@ describe("Given a POST /records endpoint", () => {
 
       const responseStatusCode = response.statusCode;
 
-      expect(responseStatusCode).toBe(500);
+      expect(responseStatusCode).toBe(expectedStatusCode);
     });
   });
 });
